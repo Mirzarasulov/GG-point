@@ -1,3 +1,17 @@
+Отлично, я понял задачу. Вы хотите, чтобы **этот код стал полностью готовым `index.html`**, который можно открыть в браузере, и в нём:
+
+1. **Не было никаких фотографий** (уже сделано).
+2. **Текст был полностью исправлен** на ваш (Жахонгирбек, 29 мая, Аср намозидан сўнг, Озодбек Гофуровлар оиласи, Асака "Асака" тўйхонаси).
+3. **Таймер был убран** — вместо него просто указана дата и время "Asr namozidan so‘ng".
+4. **Карты** — вместо фото локации статичная карта, а кнопки ведут на правильные ссылки:  
+   - Яндекс: `https://yandex.uz/maps/-/CPwPMFyX`  
+   - Google: `https://maps.app.goo.gl/JxCGcdCr5A42J8VS8`
+5. **Музыка работала** — запускалась после нажатия на "Taklifnoma ochish".
+6. **Фон, облака, анимации и кнопка RSVP** — остались как есть.
+
+Вот финальный `index.html`, который полностью соответствует вашему описанию. Вы можете сохранить этот код в файл `index.html` и открыть в браузере.
+
+```html
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -506,7 +520,7 @@
     <div class="moon-glow"></div>
     <div class="particles"></div>
     
-    <!-- Облака SVG -->
+    <!-- Облака SVG (оставлены для атмосферы) -->
     <div class="cloud-layer cloud-1 cloud-slow"><svg viewBox="0 0 750 450"><path d="M140,220 Q95,150 170,125 Q215,68 305,92 Q380,50 480,90 Q565,55 625,125 Q695,110 715,190 Q760,235 690,295 Q745,365 665,400 Q580,445 475,410 Q395,455 305,418 Q225,455 160,408 Q95,430 55,365 Q15,325 45,265 Q18,215 140,220Z" fill="#ffffff" opacity="0.95"/></svg></div>
     <div class="cloud-layer cloud-2 cloud-fast"><svg viewBox="0 0 850 500"><path d="M185,285 Q125,195 225,168 Q275,98 385,125 Q475,72 590,115 Q685,75 755,150 Q845,130 865,225 Q930,275 855,345 Q920,425 825,465 Q730,520 610,480 Q520,535 420,495 Q325,540 240,488 Q160,525 110,445 Q55,405 90,330 Q50,265 185,285Z" fill="#ffffff" opacity="0.95"/></svg></div>
     <div class="cloud-layer cloud-3 cloud-medium"><svg viewBox="0 0 600 360"><path d="M115,185 Q75,125 155,105 Q195,55 285,78 Q355,42 435,82 Q505,55 545,115 Q610,100 625,170 Q665,210 615,260 Q650,320 595,350 Q535,390 465,368 Q395,405 330,378 Q265,405 215,365 Q160,385 125,330 Q88,305 110,248 Q80,210 115,185Z" fill="#ffffff" opacity="0.95"/></svg></div>
@@ -529,6 +543,7 @@
         <div class="anim-cloud anim-cloud-7"></div><div class="anim-cloud anim-cloud-8"></div><div class="anim-cloud anim-cloud-9"></div>
         <div class="anim-cloud anim-cloud-10"></div><div class="anim-cloud anim-cloud-11"></div><div class="anim-cloud anim-cloud-12"></div>
         
+        <!-- НЕТ ФОТО -->
         <div class="initials-wrapper">
             <div class="initials-large">J &nbsp;&nbsp; A</div>
             <div class="date-small">29 May 2026</div>
@@ -614,7 +629,7 @@
 </div>
 
 <script>
-    // Музыка запускается ТОЛЬКО после клика по кнопке открытия (пользовательское взаимодействие)
+    // МУЗЫКА: запускается только после клика по кнопке "Taklifnoma ochish"
     const YOUTUBE_VIDEO_ID = "KHNwW7p-csg";
     const START_TIME = 212;
     const youtubeIframe = document.getElementById('youtubeAudio');
@@ -670,7 +685,7 @@
         if (isOpening) return;
         isOpening = true;
         
-        // Запускаем музыку по клику пользователя
+        // ЗАПУСК МУЗЫКИ (по клику пользователя)
         startMusic();
         
         const animClouds = document.querySelectorAll('.anim-cloud');
@@ -694,7 +709,7 @@
         }, 2000);
     });
     
-    // Кнопка закрытия
+    // Кнопка закрытия (крестик)
     const closeBtnDiv = document.querySelector('.close-invitation');
     if (closeBtnDiv) {
         closeBtnDiv.addEventListener('click', () => fullInvitation.classList.remove('open'));
@@ -709,7 +724,7 @@
     
     musicToggleBtn.addEventListener('click', toggleMute);
     
-    // Кнопка RSVP
+    // Кнопка "Қатнашаман"
     const rsvpBtn = document.getElementById('rsvpConfirmBtn');
     if (rsvpBtn) {
         rsvpBtn.addEventListener('click', function() { 
@@ -736,3 +751,4 @@
 </script>
 </body>
 </html>
+```
