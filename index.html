@@ -3,737 +3,816 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Jahongirbek | Amru Maruf taklifnomasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Allura&family=Alex+Brush&display=swap" rel="stylesheet">
+    <title>Jahongirbek | Taklifnoma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --ink: #3a2218;
+            --ink-mid: #5c3a2a;
+            --ink-soft: #8a6050;
+            --ink-muted: #b09080;
+            --parchment: rgba(255,250,243,0.92);
+            --parchment-mid: rgba(255,246,235,0.85);
+            --gold: #c8956a;
         }
 
         body {
-            background: #b8d4e2;
-            font-family: 'Jost', sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.02em;
+            background: #aecfe0;
+            font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+            font-weight: 400;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .cursive-font, .initials-large, .invite-card .section-title, .welcome-text p:first-child, .arabic-prayer, .star-decoration {
-            font-family: 'Allura', 'Alex Brush', 'Great Vibes', 'Parisienne', cursive;
-            font-weight: 400;
-        }
-        
-        .invitation-text p, .timer-label, .location-btn, .rsvp-action, .open-btn, .close-invitation, .map-btn {
-            font-family: 'Jost', sans-serif;
-        }
-
-        .app {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            overflow: hidden;
-        }
+        .app { position: relative; width: 100%; min-height: 100vh; overflow: hidden; }
 
         .sky-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: linear-gradient(145deg, #b0d4e8 0%, #c8e2f0 100%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: linear-gradient(160deg, #a8cfe0 0%, #c2dff0 55%, #d4eaf6 100%);
             pointer-events: none;
         }
 
-        .moon-glow {
-            position: fixed;
-            top: 8%;
-            right: 10%;
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, rgba(255,255,255,0.5), transparent 70%);
-            border-radius: 50%;
-            filter: blur(8px);
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: 1;
+        /* ── ОБЛАКА ФОНОВЫЕ — плавное движение ── */
+        .cloud-wrap {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; overflow: hidden;
         }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        .particles::before {
-            content: "";
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
-            background-size: 80px 80px;
-            opacity: 0.25;
-            animation: floatParticles 20s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes floatParticles {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-80px); }
-        }
-
-        .cloud-layer {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-            will-change: transform;
-            opacity: 0.9 !important;
-            animation: floatRight 40s linear infinite;
-        }
-        .cloud-layer.cloud-slow { animation-duration: 55s; }
-        .cloud-layer.cloud-medium { animation-duration: 45s; }
-        .cloud-layer.cloud-fast { animation-duration: 32s; }
-        @keyframes floatRight {
-            0% { transform: translateX(-5%) translateY(0%); }
-            100% { transform: translateX(10%) translateY(2%); }
-        }
-        .cloud-1 { width: 750px; height: 450px; top: -15%; left: -25%; }
-        .cloud-2 { width: 850px; height: 500px; bottom: -15%; right: -28%; }
-        .cloud-3 { width: 600px; height: 360px; top: 5%; right: -10%; }
-        .cloud-4 { width: 700px; height: 420px; bottom: 5%; left: -30%; }
-        .cloud-5 { width: 550px; height: 330px; top: 35%; left: -5%; }
-        .cloud-6 { width: 650px; height: 390px; top: -5%; right: 5%; }
-        .cloud-7 { width: 580px; height: 350px; bottom: 20%; right: -15%; }
-        .cloud-8 { width: 520px; height: 310px; top: 25%; left: -18%; }
-        .cloud-9 { width: 500px; height: 300px; bottom: 30%; left: 10%; }
-        .cloud-10 { width: 680px; height: 410px; top: 55%; right: -5%; }
-        .cloud-11 { width: 480px; height: 290px; top: -2%; left: 20%; }
-        .cloud-12 { width: 720px; height: 430px; bottom: 40%; left: -22%; }
-        .cloud-13 { width: 540px; height: 320px; top: 70%; left: 25%; }
-        .cloud-14 { width: 600px; height: 360px; bottom: -5%; left: 15%; }
-        .cloud-15 { width: 530px; height: 320px; top: 12%; left: 45%; }
-        .cloud-layer svg { width: 100%; height: 100%; }
-        .cloud-layer svg path { fill: #ffffff !important; opacity: 0.95 !important; }
-
-        .white-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%); pointer-events: none; }
-        
-        .opening-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 45% 35%, #fff8f0 0%, #ffe8dc 100%);
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            visibility: visible;
-            overflow: hidden;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .opening-overlay.hide { opacity: 0; visibility: hidden; }
-        
-        .initials-wrapper {
-            text-align: center;
-            margin-bottom: 1.2rem;
-        }
-        .initials-large {
-            font-family: 'Allura', 'Alex Brush', 'Great Vibes', cursive;
-            font-size: 4.2rem;
-            font-weight: 400;
-            color: #4a2c26;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-            letter-spacing: 0.02em;
-            line-height: 1.2;
-        }
-        .date-small {
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: #9b7666;
-            margin-top: 0.5rem;
-            font-family: 'Jost', sans-serif;
-        }
-        
-        .open-btn {
-            background: rgba(255,252,248,0.94);
-            backdrop-filter: blur(12px);
-            border: 0.8px solid rgba(200,165,135,0.5);
-            padding: 0.9rem 2.5rem;
-            border-radius: 60px;
-            font-family: 'Jost', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: #7a5546;
-            cursor: pointer;
-            z-index: 160;
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-        }
-        .open-btn:active {
-            transform: scale(0.96);
-            background: rgba(255,252,248,0.8);
-        }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .anim-cloud {
+        .bg-cloud {
             position: absolute;
-            background: radial-gradient(ellipse at 35% 40%, rgba(255,255,255,1) 0%, rgba(255,250,245,1) 100%);
-            border-radius: 55% 45% 65% 35% / 40% 60% 40% 60%;
-            filter: blur(3px);
+            background: white;
+            border-radius: 50%;
             opacity: 0;
-            transform: scale(0.65);
-            will-change: transform, opacity;
-            pointer-events: none;
-            transition: all 2s cubic-bezier(0.33, 1, 0.68, 1);
+            animation: bgCloudDrift linear infinite;
+            filter: blur(0px);
         }
-        .anim-cloud-1 { width: 580px; height: 350px; top: -5%; left: -35%; }
-        .anim-cloud-2 { width: 680px; height: 410px; bottom: -5%; right: -40%; }
-        .anim-cloud-3 { width: 500px; height: 300px; top: 22%; left: 35%; }
-        .anim-cloud-4 { width: 600px; height: 360px; top: 48%; left: -30%; }
-        .anim-cloud-5 { width: 470px; height: 280px; top: -8%; right: -5%; }
-        .anim-cloud-6 { width: 550px; height: 330px; bottom: 15%; left: -3%; }
-        .anim-cloud-7 { width: 500px; height: 300px; top: 8%; right: 8%; }
-        .anim-cloud-8 { width: 580px; height: 350px; bottom: 35%; right: -8%; }
-        .anim-cloud-9 { width: 480px; height: 290px; top: 58%; left: 18%; }
-        .anim-cloud-10 { width: 620px; height: 370px; top: 28%; right: -28%; }
-        .anim-cloud-11 { width: 490px; height: 295px; bottom: -2%; left: 25%; }
-        .anim-cloud-12 { width: 530px; height: 320px; top: 75%; right: 12%; }
-        
-        .full-invitation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, rgba(255,250,245,0.88) 0%, rgba(254,242,230,0.9) 100%);
-            z-index: 200;
-            overflow-y: auto;
+        /* Каждое облако — набор эллипсов через псевдоэлементы и вложенные divs */
+        .cg { position: absolute; pointer-events: none; }
+        .cg svg { width: 100%; height: 100%; }
+
+        @keyframes bgCloudDrift {
+            0%   { transform: translateX(0) translateY(0); opacity: 0; }
+            5%   { opacity: 1; }
+            95%  { opacity: 0.9; }
+            100% { transform: translateX(18vw) translateY(-3vh); opacity: 0; }
+        }
+        @keyframes bgCloudDriftR {
+            0%   { transform: translateX(0) translateY(0); opacity: 0; }
+            5%   { opacity: 0.85; }
+            95%  { opacity: 0.8; }
+            100% { transform: translateX(-14vw) translateY(2vh); opacity: 0; }
+        }
+
+        .cg1  { width: 700px; height: 260px; top: -4%; left: -8%;  animation: bgCloudDrift 60s 0s   linear infinite; }
+        .cg2  { width: 820px; height: 300px; top: 8%;  left: 15%;  animation: bgCloudDrift 75s 8s   linear infinite; }
+        .cg3  { width: 600px; height: 220px; top: -2%; right: -5%; animation: bgCloudDriftR 55s 3s  linear infinite; }
+        .cg4  { width: 750px; height: 280px; top: 18%; right: -12%;animation: bgCloudDriftR 68s 12s linear infinite; }
+        .cg5  { width: 680px; height: 240px; top: 35%; left: -10%; animation: bgCloudDrift 72s 5s   linear infinite; }
+        .cg6  { width: 560px; height: 200px; top: 50%; right: 0%;  animation: bgCloudDriftR 50s 18s linear infinite; }
+        .cg7  { width: 720px; height: 260px; top: 62%; left: -5%;  animation: bgCloudDrift 65s 22s  linear infinite; }
+        .cg8  { width: 640px; height: 230px; top: 75%; right: -8%; animation: bgCloudDriftR 58s 30s linear infinite; }
+        .cg9  { width: 580px; height: 210px; top: 88%; left: 10%;  animation: bgCloudDrift 70s 15s  linear infinite; }
+        .cg10 { width: 800px; height: 290px; top: 28%; left: 30%;  animation: bgCloudDrift 80s 35s  linear infinite; }
+
+        /* ── OPENING OVERLAY ── */
+        .opening-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 150;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+            background: radial-gradient(ellipse at 50% 40%, #fffaf3 0%, #ffeedd 100%);
+        }
+        .opening-overlay.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        /* Анимация облаков на обложке — плавно растут и уходят */
+        .cover-cloud {
+            position: absolute;
+            pointer-events: none;
             opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s;
-            padding: 1.8rem 1.2rem;
+            will-change: transform, opacity;
+        }
+        .cover-cloud svg path { fill: white; }
+
+        /* Орнамент обложки */
+        .cover-ornament {
+            position: relative; z-index: 5;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: coverFadeIn 1.2s ease 0.2s both;
+        }
+        @keyframes coverFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .cover-ring {
+            width: 64px; height: 64px;
+            border: 1px solid rgba(180,130,100,0.4);
+            border-radius: 50%;
+            margin: 0 auto 0.6rem;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cover-ring::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 0.5px solid rgba(180,130,100,0.25);
+            border-radius: 50%;
+        }
+        .cover-ring-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: rgba(180,130,100,0.45);
+        }
+        .cover-year {
+            font-family: 'Tenor Sans', 'EB Garamond', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: #a08068;
+            margin-top: 0.5rem;
+        }
+        .cover-rule {
+            display: flex; align-items: center; gap: 12px;
+            margin: 0.7rem auto 0;
+            width: fit-content;
+            color: rgba(160,110,85,0.4);
+        }
+        .cover-rule::before, .cover-rule::after {
+            content: '';
+            display: block;
+            width: 36px; height: 0.5px;
+            background: rgba(160,110,85,0.3);
+        }
+        .cover-rule-diamond {
+            width: 5px; height: 5px;
+            background: rgba(160,110,85,0.4);
+            transform: rotate(45deg);
+        }
+
+        .open-btn {
+            position: relative; z-index: 5;
+            background: rgba(255,252,247,0.95);
+            border: 0.8px solid rgba(190,150,120,0.45);
+            padding: 1.05rem 3rem;
+            border-radius: 60px;
+            font-family: 'Tenor Sans', 'EB Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #7a5240;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: coverFadeIn 0.9s ease 0.5s both;
+        }
+        .open-btn:active { transform: scale(0.97); }
+
+        /* ── FULL INVITATION ── */
+        .full-invitation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(150deg, rgba(255,251,245,0.9) 0%, rgba(254,244,232,0.92) 100%);
+            z-index: 200; overflow-y: auto; opacity: 0; visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s;
+            padding: 2rem 1.2rem 2.5rem;
             -webkit-overflow-scrolling: touch;
         }
         .full-invitation.open { opacity: 1; visibility: visible; }
         .invitation-inner {
-            max-width: 450px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
-            padding-bottom: 30px;
+            max-width: 430px; margin: 0 auto;
+            opacity: 0; transform: translateY(18px);
+            transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
         }
         .full-invitation.open .invitation-inner { opacity: 1; transform: translateY(0); }
-        
-        .close-invitation {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255,252,248,0.96);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            cursor: pointer;
-            z-index: 210;
-            border: 0.5px solid rgba(200,165,135,0.4);
-            color: #8b6b58;
-        }
-        .close-invitation:active { transform: scale(0.95); }
-        
-        .back-button {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255,252,248,0.96);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 210;
-            border: 0.5px solid rgba(200,165,135,0.4);
-            color: #8b6b58;
-            text-decoration: none;
-        }
-        .back-button:active { transform: scale(0.95); }
-        
-        .star-decoration {
-            text-align: center;
-            font-size: 1.2rem;
-            letter-spacing: 0.2rem;
-            color: #b88a72;
-            opacity: 0.7;
-            margin: 10px 0;
-            font-family: 'Allura', cursive;
-        }
-        
+
+        /* ── CARDS ── */
         .invite-card {
-            background: rgba(255,252,248,0.88);
-            backdrop-filter: blur(12px);
-            border-radius: 40px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 0.5px solid rgba(200,165,135,0.25);
-            position: relative;
-            transition: transform 0.15s ease;
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: all 0.6s ease;
-        }
-        .invite-card.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        .invite-card:active { transform: scale(0.99); }
-        
-        .flower-left, .flower-right {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            pointer-events: none;
-            opacity: 0.5;
-        }
-        .flower-left { top: -5px; left: -5px; background: radial-gradient(circle, rgba(255,200,180,0.4) 0%, transparent 70%); border-radius: 50%; }
-        .flower-right { bottom: -5px; right: -5px; background: radial-gradient(circle, rgba(200,180,220,0.3) 0%, transparent 70%); border-radius: 50%; }
-        
-        .section-title {
-            font-family: 'Allura', 'Alex Brush', 'Great Vibes', cursive;
-            font-size: 1.9rem;
-            font-weight: 500;
-            text-align: center;
-            color: #674438;
+            background: var(--parchment);
+            border-radius: 32px;
+            padding: 2rem 1.6rem;
             margin-bottom: 1rem;
-            letter-spacing: 0.02em;
+            border: 0.5px solid rgba(190,150,120,0.22);
+            position: relative;
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
-        
-        .invitation-text {
+        .invite-card.show { opacity: 1; transform: translateY(0); }
+
+        /* ── ORNAMENT DIVIDER ── */
+        .ornament {
             text-align: center;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: #5a3e36;
-            font-family: 'Jost', sans-serif;
+            margin: 0.5rem 0;
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 0.25rem;
+            opacity: 0.55;
         }
-        .invitation-text p {
-            margin-bottom: 0.6rem;
-            white-space: pre-line;
+        .ornament-rule {
+            display: flex; align-items: center; gap: 10px;
+            margin: 0.8rem 0;
         }
-        
-        .welcome-text {
-            text-align: center;
+        .ornament-rule::before, .ornament-rule::after {
+            content: ''; flex: 1; height: 0.5px;
+            background: rgba(190,150,120,0.3);
+        }
+        .ornament-rule span {
+            font-family: 'Allura', cursive;
             font-size: 1rem;
-            line-height: 1.7;
-            color: #5a3e36;
-            font-family: 'Jost', sans-serif;
+            color: rgba(190,150,120,0.5);
         }
-        .welcome-text p:first-child {
-            font-family: 'Allura', 'Alex Brush', cursive;
-            font-size: 1.7rem;
-            color: #7e5543;
-            margin-bottom: 0.2rem;
-        }
-        .welcome-text p {
-            margin-bottom: 0.8rem;
-        }
-        
-        .arabic-prayer {
-            font-size: 1.3rem;
-            font-family: 'Allura', 'Great Vibes', cursive;
+
+        /* ── TYPOGRAPHY ── */
+        .card-name {
+            font-family: 'Pinyon Script', 'Great Vibes', 'Allura', cursive;
+            font-size: 3.2rem;
+            font-weight: 400;
             text-align: center;
-            color: #8b5a48;
-            margin-top: 0.5rem;
-            letter-spacing: 0.03em;
-            line-height: 1.5;
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 0.1rem;
+            letter-spacing: 0.01em;
         }
-        
         .event-detail-box {
             text-align: center;
-            background: rgba(255,252,248,0.6);
-            padding: 1rem;
-            border-radius: 32px;
-            margin: 1rem 0;
+            background: rgba(255,247,238,0.65);
+            padding: 1.1rem 0.5rem 1rem;
+            border-radius: 24px;
+            margin: 1.1rem 0 0.2rem;
+            border: 0.5px solid rgba(190,150,120,0.15);
         }
         .event-date {
-            font-size: 1.8rem;
+            font-family: 'Playfair Display', 'EB Garamond', serif;
+            font-size: 1.55rem;
             font-weight: 500;
-            color: #4f2d27;
-            font-family: 'Jost', monospace;
-            letter-spacing: 0.02em;
+            color: var(--ink);
+            letter-spacing: 0.04em;
         }
         .event-time {
-            font-size: 1.1rem;
-            color: #a17363;
-            margin-top: 0.3rem;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-top: 0.4rem;
+        }
+        .event-venue {
+            font-family: 'EB Garamond', serif;
             font-style: italic;
+            font-size: 0.9rem;
+            color: var(--ink-muted);
+            margin-top: 0.25rem;
         }
-        
-        .map-static {
-            width: 100%;
-            border-radius: 32px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
-            background: #e8ddd2;
-            border: 1px solid rgba(160,120,100,0.2);
+
+        /* Основной текст */
+        .inv-body {
+            font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--ink-mid);
+            text-align: center;
         }
-        .map-static img {
-            width: 100%;
-            height: auto;
+        .inv-body .script-line {
+            font-family: 'Pinyon Script', 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--ink);
             display: block;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
         }
-        
-        .map-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 0.5rem;
+        .inv-body .small-caps {
+            font-family: 'Playfair Display', serif;
+            font-variant: small-caps;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            color: var(--ink);
         }
-        .map-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 0.8rem 0.5rem;
-            border-radius: 50px;
+        .inv-body .em-name {
+            font-family: 'Pinyon Script', 'Great Vibes', cursive;
+            font-size: 1.7rem;
+            color: var(--ink);
+            line-height: 1;
+        }
+        .inv-body .tag {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            display: block;
+            margin-top: 0.8rem;
+        }
+
+        /* Тёплые слова */
+        .welcome-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 1.95;
+            color: var(--ink-mid);
+            text-align: center;
+        }
+        .welcome-text .sc {
+            font-family: 'Pinyon Script', 'Great Vibes', cursive;
+            font-size: 1.9rem;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+
+        /* Дуа */
+        .dua-text {
+            font-family: 'Pinyon Script', 'Great Vibes', 'Allura', cursive;
+            font-size: 1.45rem;
+            color: var(--ink-mid);
+            line-height: 1.9;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+        .dua-icon {
+            text-align: center;
             font-size: 0.85rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
+            color: rgba(170,120,90,0.45);
+            letter-spacing: 0.3rem;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        /* Адрес / карта */
+        .section-label {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            text-align: center;
+            margin-bottom: 0.9rem;
+        }
+        .map-static {
+            width: 100%; border-radius: 22px; overflow: hidden;
+            margin-bottom: 0.6rem;
+            border: 0.5px solid rgba(160,120,100,0.18);
+        }
+        .map-static img { width: 100%; height: auto; display: block; aspect-ratio: 16/9; border-radius: 22px; }
+        .map-address {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--ink-soft);
+            text-align: center;
+            margin-bottom: 0.9rem;
+        }
+        .map-buttons { display: flex; gap: 10px; }
+        .map-btn {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            gap: 6px; padding: 0.78rem 0.4rem; border-radius: 50px;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.72rem; letter-spacing: 0.07em;
+            text-decoration: none; transition: all 0.2s;
+            cursor: pointer; border: none;
         }
         .map-btn:active { transform: scale(0.97); }
-        .yandex-map {
-            background: rgba(255, 50, 50, 0.15);
-            color: #cc0000;
-            border: 1px solid rgba(255, 50, 50, 0.3);
-        }
-        .google-map {
-            background: rgba(66, 133, 244, 0.12);
-            color: #1a73e8;
-            border: 1px solid rgba(66, 133, 244, 0.3);
-        }
-        
+        .yandex-map { background: rgba(220,40,40,0.08); color: #b00000; border: 0.5px solid rgba(220,40,40,0.25); }
+        .google-map { background: rgba(50,120,240,0.08); color: #1050b0; border: 0.5px solid rgba(50,120,240,0.25); }
+
+        /* RSVP */
         .rsvp-action {
-            background: rgba(250,240,230,0.92);
-            backdrop-filter: blur(10px);
-            border: 0.8px solid rgba(190,150,130,0.5);
-            padding: 0.9rem 1.5rem;
+            background: rgba(250,242,232,0.95);
+            border: 0.8px solid rgba(185,145,115,0.45);
+            padding: 1.05rem 1.5rem;
             border-radius: 50px;
-            font-family: 'Jost', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: #6b443a;
+            color: #6a4030;
             width: 100%;
             cursor: pointer;
             transition: all 0.2s;
             margin-top: 0.5rem;
         }
         .rsvp-action:active { transform: scale(0.98); }
-        
+
+        /* Музыка */
         .music-controller {
-            position: fixed;
-            bottom: 20px;
-            right: 15px;
-            z-index: 250;
-            background: rgba(255,252,248,0.94);
-            backdrop-filter: blur(12px);
-            border-radius: 50px;
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 0.5px solid rgba(210,175,150,0.5);
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            position: fixed; bottom: 22px; right: 16px; z-index: 250;
+            background: rgba(255,251,245,0.95); backdrop-filter: blur(12px);
+            border-radius: 50px; padding: 8px 15px;
+            display: flex; align-items: center; justify-content: center;
+            border: 0.5px solid rgba(200,165,135,0.4);
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
         }
-        .music-controller.active { opacity: 1; transform: scale(1); pointer-events: auto; }
-        .music-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #b27760; display: flex; align-items: center; justify-content: center; }
-        .youtube-player { position: fixed; bottom: -100px; left: -100px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-        
-        @media (max-width: 500px) {
-            .event-date { font-size: 1.5rem; }
-            .invite-card { padding: 1.2rem; }
-            .initials-large { font-size: 3.5rem; }
-            .open-btn { padding: 0.7rem 2rem; font-size: 0.75rem; }
-            .invitation-text { font-size: 0.8rem; }
-            .section-title { font-size: 1.7rem; }
-            .map-btn { font-size: 0.75rem; padding: 0.6rem 0.3rem; }
-        }
-        @media (max-width: 768px) {
-            .cloud-1, .cloud-2, .cloud-3, .cloud-4, .cloud-5, .cloud-6, .cloud-7, .cloud-8, .cloud-9, .cloud-10,
-            .cloud-11, .cloud-12, .cloud-13, .cloud-14, .cloud-15 { transform: scale(0.65); }
+        .music-controller.active { opacity: 1; pointer-events: auto; }
+        .music-btn { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: #b07760; }
+        .youtube-player { position: fixed; bottom: -200px; left: -200px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+        @media (max-width: 480px) {
+            .card-name { font-size: 2.7rem; }
+            .event-date { font-size: 1.35rem; }
+            .invite-card { padding: 1.5rem 1.2rem; border-radius: 26px; }
+            .inv-body { font-size: 0.97rem; }
+            .inv-body .script-line { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
 <div class="app">
     <div class="sky-bg"></div>
-    <div class="white-glow"></div>
-    
-    <div class="moon-glow"></div>
-    <div class="particles"></div>
-    
-    <!-- Облака SVG (оставлены для атмосферы) -->
-    <div class="cloud-layer cloud-1 cloud-slow"><svg viewBox="0 0 750 450"><path d="M140,220 Q95,150 170,125 Q215,68 305,92 Q380,50 480,90 Q565,55 625,125 Q695,110 715,190 Q760,235 690,295 Q745,365 665,400 Q580,445 475,410 Q395,455 305,418 Q225,455 160,408 Q95,430 55,365 Q15,325 45,265 Q18,215 140,220Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-2 cloud-fast"><svg viewBox="0 0 850 500"><path d="M185,285 Q125,195 225,168 Q275,98 385,125 Q475,72 590,115 Q685,75 755,150 Q845,130 865,225 Q930,275 855,345 Q920,425 825,465 Q730,520 610,480 Q520,535 420,495 Q325,540 240,488 Q160,525 110,445 Q55,405 90,330 Q50,265 185,285Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-3 cloud-medium"><svg viewBox="0 0 600 360"><path d="M115,185 Q75,125 155,105 Q195,55 285,78 Q355,42 435,82 Q505,55 545,115 Q610,100 625,170 Q665,210 615,260 Q650,320 595,350 Q535,390 465,368 Q395,405 330,378 Q265,405 215,365 Q160,385 125,330 Q88,305 110,248 Q80,210 115,185Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-4 cloud-slow"><svg viewBox="0 0 700 420"><path d="M160,245 Q110,170 200,145 Q245,82 345,108 Q425,62 525,105 Q605,72 660,140 Q740,122 758,208 Q810,255 745,320 Q800,395 720,435 Q635,485 525,450 Q445,495 350,458 Q270,495 200,448 Q135,475 92,405 Q48,365 78,295 Q45,240 160,245Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-5 cloud-fast"><svg viewBox="0 0 550 330"><path d="M98,172 Q68,118 145,100 Q185,58 268,82 Q332,48 405,85 Q470,58 505,118 Q558,102 570,162 Q605,198 565,242 Q598,298 550,325 Q498,358 432,338 Q368,365 310,338 Q252,358 212,322 Q172,340 148,292 Q118,268 138,218 Q112,188 98,172Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-6 cloud-medium"><svg viewBox="0 0 650 390"><path d="M125,205 Q82,145 165,122 Q208,72 295,95 Q365,58 445,92 Q515,62 560,125 Q630,108 645,180 Q690,222 638,272 Q678,330 622,360 Q562,400 495,375 Q425,412 360,382 Q295,410 242,372 Q188,392 148,340 Q112,318 135,262 Q108,228 125,205Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-7 cloud-slow"><svg viewBox="0 0 580 350"><path d="M108,195 Q72,132 150,112 Q192,65 278,88 Q348,52 422,85 Q488,58 528,115 Q592,100 608,165 Q648,205 598,252 Q632,312 578,342 Q518,378 452,355 Q385,388 325,358 Q265,382 222,345 Q175,365 138,312 Q102,290 125,235 Q98,205 108,195Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-8 cloud-fast"><svg viewBox="0 0 520 310"><path d="M98,178 Q65,120 142,102 Q182,60 262,84 Q325,50 395,86 Q455,58 492,112 Q548,98 560,155 Q598,192 555,238 Q588,290 540,318 Q488,348 428,328 Q368,355 312,328 Q258,348 218,312 Q178,330 152,282 Q122,260 142,212 Q118,185 98,178Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-9 cloud-medium"><svg viewBox="0 0 500 300"><path d="M92,165 Q62,110 135,92 Q172,55 248,76 Q312,45 382,80 Q442,55 478,108 Q530,95 542,150 Q575,185 535,225 Q565,278 520,302 Q472,332 418,315 Q362,338 312,315 Q262,332 225,300 Q188,318 162,272 Q135,250 155,205 Q132,182 92,165Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-10 cloud-slow"><svg viewBox="0 0 680 410"><path d="M135,225 Q90,155 175,132 Q220,75 315,100 Q390,60 478,98 Q555,68 608,132 Q685,115 702,198 Q755,245 690,310 Q750,385 670,420 Q585,470 478,438 Q398,480 310,445 Q235,480 170,438 Q108,460 70,395 Q30,358 58,290 Q28,240 135,225Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-11 cloud-fast"><svg viewBox="0 0 480 290"><path d="M85,148 Q58,98 128,82 Q165,48 235,70 Q295,42 362,78 Q418,55 448,105 Q498,92 508,145 Q538,178 498,218 Q525,268 482,292 Q438,322 382,305 Q328,325 278,305 Q228,322 192,290 Q158,308 135,262 Q112,242 130,198 Q108,175 85,148Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-12 cloud-medium"><svg viewBox="0 0 720 430"><path d="M170,255 Q118,180 210,155 Q255,95 360,120 Q448,78 555,118 Q645,82 708,155 Q798,138 818,230 Q878,280 805,352 Q872,435 785,475 Q690,530 575,495 Q490,545 390,505 Q305,550 225,498 Q148,530 105,455 Q55,415 88,340 Q50,285 170,255Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-13 cloud-slow"><svg viewBox="0 0 540 320"><path d="M105,185 Q72,128 150,110 Q192,68 275,92 Q340,58 412,94 Q475,68 512,122 Q568,108 580,168 Q615,205 572,248 Q602,305 558,332 Q508,365 452,345 Q395,370 340,345 Q285,365 248,330 Q212,348 188,300 Q158,278 178,230 Q155,205 105,185Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-14 cloud-fast"><svg viewBox="0 0 600 360"><path d="M120,198 Q82,140 162,120 Q202,76 288,98 Q355,62 428,96 Q495,68 535,122 Q598,108 612,172 Q652,210 608,258 Q640,312 592,342 Q538,378 478,358 Q418,388 360,358 Q305,378 268,342 Q230,360 200,312 Q172,290 192,242 Q168,218 120,198Z" fill="#ffffff" opacity="0.95"/></svg></div>
-    <div class="cloud-layer cloud-15 cloud-medium"><svg viewBox="0 0 530 320"><path d="M95,168 Q65,112 135,95 Q172,58 248,80 Q312,50 382,84 Q442,60 475,112 Q528,100 540,155 Q572,190 535,232 Q562,282 520,308 Q472,338 418,320 Q362,342 312,320 Q262,338 225,306 Q188,322 162,278 Q135,256 155,212 Q132,190 95,168Z" fill="#ffffff" opacity="0.95"/></svg></div>
 
+    <!-- Фоновые облака — SVG плавно плывут -->
+    <div class="cloud-wrap" id="cloudWrap"></div>
+
+    <!-- ОБЛОЖКА -->
     <div class="opening-overlay" id="openingOverlay">
-        <div class="anim-cloud anim-cloud-1"></div><div class="anim-cloud anim-cloud-2"></div><div class="anim-cloud anim-cloud-3"></div>
-        <div class="anim-cloud anim-cloud-4"></div><div class="anim-cloud anim-cloud-5"></div><div class="anim-cloud anim-cloud-6"></div>
-        <div class="anim-cloud anim-cloud-7"></div><div class="anim-cloud anim-cloud-8"></div><div class="anim-cloud anim-cloud-9"></div>
-        <div class="anim-cloud anim-cloud-10"></div><div class="anim-cloud anim-cloud-11"></div><div class="anim-cloud anim-cloud-12"></div>
-        
-        <!-- НЕТ ФОТО -->
-        <div class="initials-wrapper">
-            <div class="initials-large">J &nbsp;&nbsp; A</div>
-            <div class="date-small">29 May 2026</div>
+        <!-- облака анимации открытия -->
+        <canvas id="cloudCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;"></canvas>
+
+        <div class="cover-ornament">
+            <div class="cover-ring"><div class="cover-ring-dot"></div></div>
+            <div class="cover-year">29 May · 2026</div>
+            <div class="cover-rule"><div class="cover-rule-diamond"></div></div>
         </div>
-        <button class="open-btn" id="openBtn">Taklifnoma ochish ✧</button>
+
+        <button class="open-btn" id="openBtn">Taklifnomani ochish</button>
     </div>
 
+    <!-- ПРИГЛАШЕНИЕ -->
     <div class="full-invitation" id="fullInvitation">
         <div class="invitation-inner">
+
+            <!-- 1. Имя и дата -->
             <div class="invite-card">
-                <div class="flower-left"></div><div class="flower-right"></div>
-                <div class="star-decoration">❦</div>
-                <div style="font-size:2.5rem; text-align:center; font-family:'Allura', 'Great Vibes', cursive;">Jahongirbek</div>
+                <div class="card-name">Jahongirbek</div>
+                <div class="ornament">✦ ✦ ✦</div>
                 <div class="event-detail-box">
-                    <div class="event-date">29 May 2026</div>
-                    <div class="event-time">Asr namozidan so‘ng</div>
+                    <div class="event-date">29 Май 2026</div>
+                    <div class="event-time">Аср намозидан сўнг</div>
+                    <div class="event-venue">Амру Маъруф · Асака</div>
                 </div>
-                <div style="margin-top:0.2rem; text-align:center; font-size:0.8rem; color:#a77a66;">Amru Ma'ruf · Asaka</div>
             </div>
-            
+
+            <!-- 2. Текст приглашения -->
             <div class="invite-card">
-                <div class="flower-left"></div><div class="flower-right"></div>
-                <div class="star-decoration">✧</div>
-                <div class="invitation-text">
-                    <p>
-Ассалому алайкум!<br><br>
-Хурматли азиз мехмонимиз.<br><br>
-Сизни ва оила аъзоларингизни азиз фарзандимиз ЖАХОНГИРБЕКнинг<br>
-"НИКОХ" тўйи муносабати билан<br>
-2026 йил 29-май куни<br>
-Аср намозидан сўнг<br>
-"Амру Маруф" дастурхонимизга таклиф этамиз.<br><br>
-Хурмат ва эхтиром ила.<br>
-ОЗОДБЕК ГОФУРОВлар оиласи<br><br>
-Манзил: Асака шаҳар "АСАКА" тўйхонаси<br>
-Мўлжал: Истироҳат боғи рўпарасида
-                    </p>
+                <div class="inv-body">
+                    <span class="script-line">Ассалому алайкум!</span>
+                    <div class="ornament-rule"><span>❧</span></div>
+                    Хурматли азиз меҳмонимиз,<br>
+                    сизни ва оила аъзоларингизни<br>
+                    азиз фарзандимиз<br>
+                    <span class="em-name">Жаҳонгирбек</span>нинг<br>
+                    <span class="small-caps">Никоҳ тўйи</span> муносабати билан<br>
+                    <br>
+                    <strong style="font-size:1.1rem; font-weight:500; letter-spacing:0.03em;">29 Май 2026 йил</strong><br>
+                    Аср намозидан сўнг<br>
+                    дастурхонимизга таклиф этамиз.
+                    <div class="ornament-rule"><span>❧</span></div>
+                    <span class="small-caps">Озодбек Ғофуров оиласи</span>
+                    <span class="tag">Асака шаҳар · "Асака" тўйхонаси</span>
                 </div>
-                <div class="star-decoration">✧</div>
             </div>
-            
+
+            <!-- 3. Адрес и карта -->
             <div class="invite-card">
-                <div class="flower-left"></div><div class="flower-right"></div>
-                <div class="section-title">Manzil</div>
+                <div class="section-label">Манзил</div>
                 <div class="map-static">
-                    <img src="https://static-maps.yandex.ru/1.x/?ll=72.237158,40.648742&z=16&l=map&size=450,250&pt=72.237158,40.648742,pm2rdl" alt="Asaka to'yxonasi xaritasi" style="width:100%; height:auto; border-radius:28px;">
+                    <img src="https://static-maps.yandex.ru/1.x/?ll=72.237158,40.648742&z=16&l=map&size=450,250&pt=72.237158,40.648742,pm2rdl" alt="Asaka to'yxonasi">
+                </div>
+                <div class="map-address">
+                    Асака шаҳар, "Асака" тўйхонаси<br>
+                    Истироҳат боғи рўпараси
                 </div>
                 <div class="map-buttons">
-                    <a href="https://yandex.uz/maps/-/CPwPMFyX" class="map-btn yandex-map" target="_blank">🗺️ Яндекс Карта</a>
+                    <a href="https://yandex.uz/maps/-/CPwPMFyX" class="map-btn yandex-map" target="_blank">🗺 Яндекс Карта</a>
                     <a href="https://maps.app.goo.gl/JxCGcdCr5A42J8VS8" class="map-btn google-map" target="_blank">📍 Google Карта</a>
                 </div>
-                <div style="margin-top:0.8rem; font-size:0.7rem; text-align:center; color:#a77a66;">Асака шаҳар "Асака" тўйхонаси (Истироҳат боғи рўпараси)</div>
             </div>
-            
+
+            <!-- 4. Тёплые слова -->
             <div class="invite-card">
-                <div class="flower-left"></div><div class="flower-right"></div>
                 <div class="welcome-text">
-                    <p>Азиз меҳмонлар!</p>
-                    <p>Сизнинг келиб иштирок этишингиз<br>биз учун фақат таклиф эмас — қалб қувончидир.</p>
-                    <p>Биз сизни Аср намозидан сўнг интизорлик билан кутамиз 🤍</p>
+                    <span class="sc">Азиз меҳмонлар!</span>
+                    Сизнинг иштирок этишингиз<br>
+                    биз учун — қалб қувончидир.<br><br>
+                    <em>Аср намозидан сўнг интизорлик билан кутамиз 🤍</em>
                 </div>
             </div>
-            
+
+            <!-- 5. Дуа -->
             <div class="invite-card">
-                <div class="flower-left"></div><div class="flower-right"></div>
-                <div class="star-decoration">✨ 🕌 ✨</div>
-                <div class="arabic-prayer">
+                <span class="dua-icon">✦ 🕌 ✦</span>
+                <div class="dua-text">
                     Аллоҳумма барик лаҳума<br>
                     ва барик алайҳима<br>
                     ва жмаъ байнаҳума фи хайр
                 </div>
-                <div class="star-decoration">✨ 🕌 ✨</div>
+                <span class="dua-icon">✦ 🕌 ✦</span>
             </div>
 
-            <button class="rsvp-action" id="rsvpConfirmBtn">✨ Қатнашаман ✨</button>
+            <button class="rsvp-action" id="rsvpConfirmBtn">Қатнашаман</button>
         </div>
     </div>
 
-    <a href="index.html" class="back-button">←</a>
+    <a href="index.html" class="back-button" style="position:fixed;top:15px;left:15px;width:44px;height:44px;border-radius:50%;background:rgba(255,252,248,0.96);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;font-size:20px;z-index:210;border:0.5px solid rgba(200,165,135,0.4);color:#8b6b58;text-decoration:none;">←</a>
 
     <div class="youtube-player"><iframe id="youtubeAudio" width="1" height="1" src="" allow="autoplay; encrypted-media" style="border:0"></iframe></div>
     <div class="music-controller" id="musicController"><button class="music-btn" id="musicToggleBtn">🔇</button></div>
 </div>
 
 <script>
-    // МУЗЫКА: запускается только после клика по кнопке "Taklifnoma ochish"
-    const YOUTUBE_VIDEO_ID = "KHNwW7p-csg";
-    const START_TIME = 212;
-    const youtubeIframe = document.getElementById('youtubeAudio');
-    const musicToggleBtn = document.getElementById('musicToggleBtn');
-    let musicStarted = false;
-    let isMuted = false;
-    
-    function getMusicUrl(mute = false) {
-        let muteParam = mute ? "&mute=1" : "&mute=0";
-        return `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&start=${START_TIME}${muteParam}&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&showinfo=0&disablekb=1&modestbranding=1&rel=0`;
+// ── ФОНОВЫЕ ОБЛАКА SVG ──
+(function() {
+    const wrap = document.getElementById('cloudWrap');
+    const W = window.innerWidth, H = window.innerHeight;
+    const shapes = [
+        // viewBox, path
+        [800,280, "M120,180 Q70,110 160,90 Q200,40 310,65 Q400,22 510,62 Q620,28 690,95 Q770,80 790,160 Q830,200 770,255 Q820,320 740,355 Q650,395 540,368 Q450,400 355,372 Q265,400 195,362 Q125,385 88,322 Q42,285 80,225 Q50,188 120,180Z"],
+        [900,310, "M150,220 Q95,145 200,118 Q248,62 368,88 Q465,45 580,85 Q685,48 758,118 Q850,100 868,192 Q918,240 848,305 Q908,385 820,418 Q720,460 600,432 Q508,472 408,440 Q312,475 230,432 Q152,458 108,385 Q60,348 92,278 Q58,232 150,220Z"],
+        [700,250, "M100,165 Q62,108 148,88 Q188,48 282,72 Q355,38 438,74 Q508,48 548,105 Q612,92 625,162 Q660,200 615,248 Q648,308 598,335 Q540,368 478,348 Q415,372 360,348 Q302,368 265,332 Q228,348 198,300 Q168,278 188,228 Q162,202 100,165Z"],
+        [760,270, "M115,175 Q75,115 162,96 Q202,52 295,76 Q368,42 455,78 Q520,52 560,110 Q625,95 638,168 Q675,208 628,258 Q660,318 612,345 Q554,378 492,358 Q428,382 372,356 Q312,378 272,340 Q232,358 204,308 Q172,284 192,232 Q165,208 115,175Z"],
+        [850,295, "M145,210 Q90,138 192,112 Q238,60 352,84 Q445,42 558,80 Q658,44 728,112 Q815,96 832,178 Q878,224 812,286 Q870,360 788,394 Q695,435 580,408 Q492,448 396,418 Q302,452 222,412 Q148,438 105,366 Q58,328 90,258 Q55,218 145,210Z"],
+        [680,240, "M105,160 Q68,105 150,86 Q190,50 275,72 Q345,40 422,74 Q485,50 522,102 Q582,90 594,156 Q628,194 585,240 Q616,298 568,324 Q512,356 455,338 Q396,360 346,336 Q292,356 258,324 Q222,340 196,294 Q168,272 185,228 Q160,206 105,160Z"],
+        [780,268, "M118,172 Q78,114 165,94 Q206,52 298,76 Q375,42 458,76 Q525,50 565,108 Q628,94 640,166 Q675,205 630,252 Q662,310 615,338 Q558,370 498,352 Q436,374 382,350 Q325,372 285,336 Q248,354 220,306 Q190,284 208,234 Q182,210 118,172Z"],
+        [920,320, "M155,228 Q100,152 205,125 Q252,68 375,94 Q472,50 590,90 Q692,53 765,125 Q858,108 875,195 Q922,244 855,310 Q915,390 825,425 Q728,468 610,438 Q518,480 418,448 Q322,482 240,440 Q162,466 118,392 Q68,355 100,282 Q64,238 155,228Z"],
+    ];
+
+    function createCloud(idx) {
+        const [vw, vh, path] = shapes[idx % shapes.length];
+        const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        svg.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
+        svg.style.cssText = 'width:100%;height:100%;';
+        const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d', path);
+        p.setAttribute('fill','white');
+        svg.appendChild(p);
+
+        const el = document.createElement('div');
+        el.className = 'cg';
+        // случайный размер
+        const scale = 0.5 + Math.random() * 0.7;
+        const cw = Math.round(vw * scale * 0.9);
+        const ch = Math.round(vh * scale * 0.9);
+        el.style.cssText = `position:absolute;width:${cw}px;height:${ch}px;pointer-events:none;`;
+        el.appendChild(svg);
+        return el;
     }
-    
-    function startMusic() { 
-        if (musicStarted) return; 
-        musicStarted = true; 
-        youtubeIframe.src = getMusicUrl(false);
-        musicToggleBtn.innerHTML = '🔊'; 
-        isMuted = false; 
-    }
-    
-    function toggleMute() { 
-        if (!musicStarted) { 
-            startMusic(); 
-            return; 
-        } 
-        if (isMuted) { 
-            youtubeIframe.src = getMusicUrl(false);
-            musicToggleBtn.innerHTML = '🔊'; 
-            isMuted = false; 
-        } else { 
-            youtubeIframe.src = getMusicUrl(true);
-            musicToggleBtn.innerHTML = '🔇'; 
-            isMuted = true; 
-        } 
-    }
-    
-    // Анимация появления карточек
-    const cards = document.querySelectorAll('.invite-card');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-    }, { threshold: 0.2 });
-    cards.forEach(c => observer.observe(c));
-    
-    const openingOverlay = document.getElementById('openingOverlay');
-    const fullInvitation = document.getElementById('fullInvitation');
-    const musicController = document.getElementById('musicController');
-    const openBtn = document.getElementById('openBtn');
-    
-    setTimeout(() => { musicController.classList.add('active'); }, 500);
-    
-    let isOpening = false;
-    openBtn.addEventListener('click', function(e) {
-        if (isOpening) return;
-        isOpening = true;
-        
-        // ЗАПУСК МУЗЫКИ (по клику пользователя)
-        startMusic();
-        
-        const animClouds = document.querySelectorAll('.anim-cloud');
-        const directions = [
-            'translateX(-620px) translateY(-280px) scale(2.8)', 'translateX(680px) translateY(300px) scale(2.9)', 'translateX(500px) translateY(-350px) scale(2.7)',
-            'translateX(-580px) translateY(420px) scale(2.8)', 'translateX(420px) translateY(-220px) scale(2.6)', 'translateX(-480px) translateY(-180px) scale(2.7)',
-            'translateX(580px) translateY(260px) scale(2.8)', 'translateX(-620px) translateY(340px) scale(2.7)', 'translateX(360px) translateY(-450px) scale(2.6)',
-            'translateX(640px) translateY(-240px) scale(2.7)', 'translateX(-420px) translateY(480px) scale(2.7)', 'translateX(340px) translateY(420px) scale(2.6)'
-        ];
-        animClouds.forEach((cloud, idx) => { 
-            setTimeout(() => { 
-                cloud.style.transition = 'all 2s cubic-bezier(0.33, 1, 0.68, 1)'; 
-                cloud.style.opacity = '1'; 
-                cloud.style.transform = directions[idx]; 
-                setTimeout(() => { cloud.style.opacity = '0'; }, 1800); 
-            }, idx * 30); 
+
+    // Создаём 14 облаков и анимируем через JS для полного контроля
+    const clouds = [];
+    for(let i = 0; i < 14; i++) {
+        const el = createCloud(i);
+        wrap.appendChild(el);
+        clouds.push({
+            el,
+            // инициализируем позицию
+            x: 0, y: 0,
+            vx: 0, vy: 0,
+            opacity: 0,
+            maxOpacity: 0,
+            life: 0,
+            maxLife: 0,
+            phase: 'wait',
+            delay: i * 4000 + Math.random() * 8000
         });
-        setTimeout(() => {
-            openingOverlay.classList.add('hide');
-            fullInvitation.classList.add('open');
-        }, 2000);
+    }
+
+    function initCloud(c) {
+        const el = c.el;
+        const side = Math.floor(Math.random() * 3); // 0=left, 1=right, 2=top-mix
+        const sw = window.innerWidth, sh = window.innerHeight;
+        const w = parseInt(el.style.width);
+        const h = parseInt(el.style.height);
+        let x, y, vx, vy;
+        if(side === 0) { x = -w - 20; y = Math.random() * sh * 1.1 - sh*0.05; vx = 0.18 + Math.random()*0.12; vy = (Math.random()-0.5)*0.05; }
+        else if(side === 1) { x = sw + 20; y = Math.random() * sh * 1.1 - sh*0.05; vx = -(0.18 + Math.random()*0.12); vy = (Math.random()-0.5)*0.05; }
+        else { x = Math.random() * sw * 1.2 - sw*0.1; y = -h - 20; vx = (Math.random()-0.5)*0.1; vy = 0.1 + Math.random()*0.08; }
+        c.x = x; c.y = y; c.vx = vx; c.vy = vy;
+        c.maxOpacity = 0.7 + Math.random() * 0.28;
+        c.maxLife = 90000 + Math.random() * 60000;
+        c.life = 0; c.phase = 'fadein';
+        el.style.opacity = 0;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    let last = 0;
+    function tick(now) {
+        const dt = Math.min(now - last, 64);
+        last = now;
+        clouds.forEach(c => {
+            if(c.phase === 'wait') {
+                c.delay -= dt;
+                if(c.delay <= 0) initCloud(c);
+                return;
+            }
+            c.life += dt;
+            c.x += c.vx * dt * 0.5;
+            c.y += c.vy * dt * 0.5;
+            const fadeTime = 4000;
+            let op = c.maxOpacity;
+            if(c.life < fadeTime) op = c.maxOpacity * (c.life / fadeTime);
+            else if(c.life > c.maxLife - fadeTime) op = c.maxOpacity * Math.max(0, (c.maxLife - c.life) / fadeTime);
+            if(c.life >= c.maxLife) {
+                c.phase = 'wait';
+                c.delay = 2000 + Math.random()*6000;
+                c.el.style.opacity = 0;
+                return;
+            }
+            c.el.style.opacity = op;
+            c.el.style.transform = `translate(${c.x}px, ${c.y}px)`;
+        });
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(t => { last = t; requestAnimationFrame(tick); });
+})();
+
+// ── АНИМАЦИЯ ОТКРЫТИЯ — Canvas облака разлетаются ──
+(function() {
+    const canvas = document.getElementById('cloudCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], running = false, startTime = 0;
+
+    function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+
+    function makeParticles() {
+        particles = [];
+        // 16 облаков-капель вырастают из центра и разлетаются
+        for(let i = 0; i < 18; i++) {
+            const angle = (i / 18) * Math.PI * 2 + (Math.random()-0.5)*0.4;
+            const speed = 1.8 + Math.random() * 2.2;
+            const size = 80 + Math.random() * 180;
+            particles.push({
+                x: W/2, y: H/2,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                size, grow: 0.3 + Math.random()*0.5,
+                opacity: 0, maxOp: 0.85 + Math.random()*0.15,
+                life: 0,
+            });
+        }
+        // + несколько крупных в стороны
+        for(let i = 0; i < 6; i++) {
+            const angle = (i/6)*Math.PI*2;
+            const speed = 3 + Math.random()*2;
+            particles.push({
+                x: W/2 + (Math.random()-0.5)*60,
+                y: H/2 + (Math.random()-0.5)*60,
+                vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed,
+                size: 160 + Math.random()*220,
+                grow: 0.6+Math.random()*0.8,
+                opacity: 0, maxOp: 0.9,
+                life: 0,
+            });
+        }
+    }
+
+    function drawCloud(x, y, r, alpha) {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = 'white';
+        // рисуем пушистый силуэт
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x - r*0.45, y + r*0.2, r*0.72, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x + r*0.45, y + r*0.25, r*0.68, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x + r*0.85, y + r*0.5, r*0.5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x - r*0.8, y + r*0.55, r*0.52, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    const DURATION = 2200;
+    let raf = null;
+
+    window._startOpenAnim = function(cb) {
+        running = true;
+        startTime = performance.now();
+        makeParticles();
+
+        function frame(now) {
+            const t = now - startTime;
+            const progress = Math.min(t / DURATION, 1);
+
+            ctx.clearRect(0,0,W,H);
+
+            let allDone = true;
+            particles.forEach(p => {
+                p.life += 16;
+                const pt = p.life / DURATION;
+                const fadeIn = Math.min(pt * 8, 1);
+                const fadeOut = pt > 0.5 ? Math.max(0, 1 - (pt - 0.5) * 2.4) : 1;
+                p.opacity = p.maxOp * fadeIn * fadeOut;
+                p.size += p.grow;
+                p.x += p.vx * (1 - pt*0.7);
+                p.y += p.vy * (1 - pt*0.7);
+                if(p.opacity > 0.01) { drawCloud(p.x, p.y, p.size, p.opacity); allDone = false; }
+            });
+
+            if(progress < 1 || !allDone) {
+                raf = requestAnimationFrame(frame);
+            } else {
+                ctx.clearRect(0,0,W,H);
+                if(cb) cb();
+            }
+        }
+        raf = requestAnimationFrame(frame);
+    };
+})();
+
+// ── МУЗЫКА ──
+const YOUTUBE_VIDEO_ID = "KHNwW7p-csg";
+const START_TIME = 212;
+const youtubeIframe = document.getElementById('youtubeAudio');
+const musicToggleBtn = document.getElementById('musicToggleBtn');
+let musicStarted = false, isMuted = false;
+
+function getMusicUrl(mute) {
+    return `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&start=${START_TIME}&mute=${mute?1:0}&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&showinfo=0&disablekb=1&modestbranding=1&rel=0`;
+}
+function startMusic() {
+    if(musicStarted) return;
+    musicStarted = true;
+    youtubeIframe.src = getMusicUrl(false);
+    musicToggleBtn.innerHTML = '🔊';
+}
+function toggleMute() {
+    if(!musicStarted) { startMusic(); return; }
+    isMuted = !isMuted;
+    youtubeIframe.src = getMusicUrl(isMuted);
+    musicToggleBtn.innerHTML = isMuted ? '🔇' : '🔊';
+}
+
+// ── ОТКРЫТИЕ ──
+const openingOverlay = document.getElementById('openingOverlay');
+const fullInvitation = document.getElementById('fullInvitation');
+const musicController = document.getElementById('musicController');
+const openBtn = document.getElementById('openBtn');
+
+setTimeout(() => { musicController.classList.add('active'); }, 600);
+
+let isOpening = false;
+openBtn.addEventListener('click', function() {
+    if(isOpening) return;
+    isOpening = true;
+    startMusic();
+
+    window._startOpenAnim(() => {
+        openingOverlay.classList.add('hide');
+        fullInvitation.classList.add('open');
     });
-    
-    // Кнопка закрытия (крестик)
-    const closeBtnDiv = document.querySelector('.close-invitation');
-    if (closeBtnDiv) {
-        closeBtnDiv.addEventListener('click', () => fullInvitation.classList.remove('open'));
-    } else {
-        const closeSpan = document.createElement('div');
-        closeSpan.className = 'close-invitation';
-        closeSpan.innerHTML = '✕';
-        closeSpan.style.position = 'fixed';
-        document.body.appendChild(closeSpan);
-        closeSpan.addEventListener('click', () => fullInvitation.classList.remove('open'));
-    }
-    
-    musicToggleBtn.addEventListener('click', toggleMute);
-    
-    // Кнопка "Қатнашаман"
-    const rsvpBtn = document.getElementById('rsvpConfirmBtn');
-    if (rsvpBtn) {
-        rsvpBtn.addEventListener('click', function() { 
-            const toast = document.createElement('div'); 
-            toast.innerText = '✨ Раҳмат, жавобингиз қабул қилинди! ✨'; 
-            toast.style.cssText = 'position:fixed; bottom:90px; left:20px; right:20px; background:rgba(255,245,235,0.96); backdrop-filter:blur(16px); border-radius:50px; padding:0.8rem; text-align:center; font-size:0.8rem; color:#5d3e36; z-index:300; opacity:0; transition:opacity 0.2s;'; 
-            document.body.appendChild(toast); 
-            setTimeout(() => toast.style.opacity = '1', 10); 
-            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 2500); 
-        });
-    }
-    
-    // Эффект параллакса облаков при скролле
-    const inviteScroll = document.getElementById('fullInvitation');
-    if (inviteScroll) {
-        inviteScroll.addEventListener('scroll', () => { 
-            const y = inviteScroll.scrollTop; 
-            document.querySelectorAll('.cloud-layer').forEach((cloud, i) => { 
-                const speed = 0.003 + (i * 0.0002); 
-                cloud.style.transform = `translateY(${y * speed}px)`; 
-            }); 
-        });
-    }
+
+    // Скрываем контент обложки чуть раньше
+    setTimeout(() => {
+        document.querySelector('.cover-ornament').style.transition = 'opacity 0.4s';
+        document.querySelector('.cover-ornament').style.opacity = '0';
+        openBtn.style.transition = 'opacity 0.3s';
+        openBtn.style.opacity = '0';
+    }, 300);
+});
+
+// ── КАРТОЧКИ — анимация при скролле ──
+const cards = document.querySelectorAll('.invite-card');
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.12 });
+cards.forEach(c => obs.observe(c));
+
+musicToggleBtn.addEventListener('click', toggleMute);
+
+// ── RSVP ──
+const rsvpBtn = document.getElementById('rsvpConfirmBtn');
+if(rsvpBtn) {
+    rsvpBtn.addEventListener('click', function() {
+        const toast = document.createElement('div');
+        toast.innerText = '✨ Раҳмат! Жавобингиз қабул қилинди ✨';
+        toast.style.cssText = 'position:fixed;bottom:80px;left:20px;right:20px;background:rgba(255,248,240,0.97);backdrop-filter:blur(14px);border-radius:50px;padding:0.9rem;text-align:center;font-family:"Tenor Sans",sans-serif;font-size:0.75rem;letter-spacing:0.06em;color:#5d3e30;z-index:300;opacity:0;transition:opacity 0.25s;border:0.5px solid rgba(195,155,125,0.35);';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.style.opacity = '1', 10);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 2800);
+    });
+}
+
+// Параллакс
+document.getElementById('fullInvitation').addEventListener('scroll', function() {
+    const y = this.scrollTop;
+    document.querySelectorAll('.cg').forEach((c,i) => {
+        c.style.transform = `translate(${c._x||0}px, ${(c._y||0) + y*(0.02+i*0.003)}px)`;
+    });
+});
 </script>
 </body>
 </html>
